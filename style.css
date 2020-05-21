@@ -1,0 +1,13 @@
+main {
+    background-color: black;
+    background-image:URL(pictures/background.jpg) ;
+    color:white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+main div {
+    max-width: 60%;
+    background-color: black;
+}

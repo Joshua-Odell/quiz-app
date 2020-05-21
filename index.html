@@ -6,11 +6,44 @@
     <title>Neptune Quiz</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
     <main>
         <h1>Neptune Quiz</h1>
             <!-- Each element will be displayed independantly -->
+            <div>
+                <h2>
+                    Welcome Explorer:
+                </h2>
+                <p>
+                    The Rocket is fully fueled and ready to embark.
+                    With you at the Helm we have the utmost confidence that you will reach Neptune. <br>
+                    Ignition in:<br>
+                    3 . . . <br>
+                    2 . . . <br>
+                    1 . . . <br>
+                </p>
+                <form>
+                    <input type="button" id="start" value="start">
+                    <label for="start">IGNITION</label>
+                </form>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <div>
                 <h2>
                     Neptune is the ____ planet from the Sun?
@@ -25,92 +58,20 @@
                     <input type="radio" id="option4" name="options" value="option4">
                     <label for="option4">8th</label><br> <!--correct-->
                     <input type="submit">
+
                 </form>
                 <p> 
                     Mission Completion: <!--output a percentage of correct awnsers--> <br>
                     "PREFORMATED MESSAGE BASED ON COMPLETION PERCENTAGE"
                 </p>
             </div>
-            <div>
-                <h2>
-                    How Many Rings Does Neptune Have?
-                </h2>
-                <form>
-                    <input type="radio" id="option1" name="options" value="option1">
-                    <label for="option1">1</label><br>
-                    <input type="radio" id="option2" name="options" value="option2">
-                    <label for="option2">0</label><br>
-                    <input type="radio" id="option3" name="options" value="option3">
-                    <label for="option3">7</label><br>
-                    <input type="radio" id="option4" name="options" value="option4">
-                    <label for="option4">5</label><br> <!--correct-->
-                    <input type="submit">
-                </form>
-                <p> 
-                    Mission Completion: <!--output a percentage of correct awnsers--> <br>
-                    "PREFORMATED MESSAGE BASED ON COMPLETION PERCENTAGE"
-                </p>
-            </div>
-            <div>
-                <h2>
-                    How Many Moons Does Neptune Have?
-                </h2>
-                <form>
-                    <input type="radio" id="option1" name="options" value="option1">
-                    <label for="option1">0</label><br>
-                    <input type="radio" id="option2" name="options" value="option2">
-                    <label for="option2">14</label><br> <!--correct-->
-                    <input type="radio" id="option3" name="options" value="option3">
-                    <label for="option3">9</label><br>
-                    <input type="radio" id="option4" name="options" value="option4">
-                    <label for="option4">7</label><br>
-                    <input type="submit">
-                </form>
-                <p> 
-                    Mission Completion: <!--output a percentage of correct awnsers--> <br>
-                    "PREFORMATED MESSAGE BASED ON COMPLETION PERCENTAGE"
-                </p>
-            </div>
-            <div>
-                <h2>
-                    How long is a year on Neptune?
-                </h2>
-                <form>
-                    <input type="radio" id="option1" name="options" value="option1">
-                    <label for="option1">73.5 Earth Years</label><br>
-                    <input type="radio" id="option2" name="options" value="option2">
-                    <label for="option2">239.9 Earth Years</label><br>
-                    <input type="radio" id="option3" name="options" value="option3">
-                    <label for="option3">164.8 Earth Years</label><br> <!--correct-->
-                    <input type="radio" id="option4" name="options" value="option4">
-                    <label for="option4">142.4 Earth Years</label><br>
-                    <input type="submit">
-                </form>
-                <p> 
-                    Mission Completion: <!--output a percentage of correct awnsers--> <br>
-                    "PREFORMATED MESSAGE BASED ON COMPLETION PERCENTAGE"
-                </p>
-            </div>
-            <div>
-                <h2>
-                    Neptune is a ____?
-                </h2>
-                <form>
-                    <input type="radio" id="option1" name="options" value="option1">
-                    <label for="option1">Gas Giant</label><br> <!--correct-->
-                    <input type="radio" id="option2" name="options" value="option2">
-                    <label for="option2">Red Dwarf</label><br>
-                    <input type="radio" id="option3" name="options" value="option3">
-                    <label for="option3">Terrestrial Planet</label><br>
-                    <input type="radio" id="option4" name="options" value="option4">
-                    <label for="option4"> Ice Giant</label><br>
-                    <input type="submit">
-                </form>
-            </div>
+            
 
         
     <!-- results will be displayed as a seperate screen  with a mission sucess or failure result based on percentage completed-->
     <!--See napkingsketch.jpg in github repository for napkin sketech-->
     </main>
 </body>
+<script src="index.js"></script>
+<script src="question.js"></script>
 </html>
