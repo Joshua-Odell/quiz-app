@@ -5,3 +5,14 @@ const list=[
     {question:"How long is a year on Neptune?", o1:"73.5 Earth Years", o2:"239.9 Earth Years", o3:"164.8 Earth Years", o4:"142.4 Earth Years", awnser:"164.8 Earth Years"},
     {question:"Neptune is a ____?", o1:"Gas Giant", o2:"Red Dwarf", o3:"Terrestrial Planet", o4:"Ice Giant", awnser:"Gas Giant"}
 ]
+
+const percentage= 0
+
+const quotes=[
+    {progress:0, quote:"You have a long way to go yet"},
+    {progress:20, quote:"Now thats the spirit"},
+    {progress:40, quote:"Keep the pace"},
+    {progress:60, quote:"Not Much Further at this rate"},
+    {progress:80, quote:"You are nearly there"},
+    {progress:100, quote:"You have done it Captin mission accomplished!"}
+]
