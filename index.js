@@ -7,10 +7,10 @@ function begin() {
         e.preventDefault();
          //reset percentage to zero
         const result=0;
-        console.log(result)
+        console.log(result);
         //run pullQues
         pullQuestion();
-        console.log("ignition")
+        console.log("ignition");
     });
    
 }
@@ -18,7 +18,7 @@ function begin() {
 function pullQuestion() {
     //fill in a form with information from list 
     //create a submit button
-    let questionCount = 2
+    const questionCount = 0
     const currentQuestion = $(
         `<div>
                 <h2>
@@ -33,7 +33,7 @@ function pullQuestion() {
                     <label for="option3">${list[questionCount].o3}</label><br>
                     <input type="radio" id="option4" name="options" value="option4">
                     <label for="option4">${list[questionCount].o4}</label><br> <!--correct-->
-                    <input type="submit" id="nextQuestion" value="Next Question">
+                    <input type="submit" class="nextQuestion" id="nextQuestion" value="Next Question">
 
                 </form>
                 <p> 
@@ -47,14 +47,19 @@ function pullQuestion() {
     $("main").html(currentQuestion);
     //check remaining questions if none call display results function
     questionCheck();
-    console.log("Question Generated")
+    console.log("Question Generated");
 }
 
 function questionCheck() {
     //listen for form submit button
-    $(document).on(click, #nextQuestion, function(e){ 
-        console.log("next question")
+    $(document).on('click', '.nextQuestion', function(e){ 
+        e.preventDefault;
+        questionCount ++;
     });
+    if (list[questionCount].awnser === submitedAwnser){
+        result ++;
+    };
+    pullQuestion();
     //check if awnser was correct
     //update percentage
     //call pullQuestion
@@ -69,5 +74,40 @@ function startOver() {
     //reset the percentage count to zero
     //call the begin function 
 }
+
+
+
+
+// This is the code used for an example
+function handleSelectOption() {
+    $('body').on("submit",'#js-questions', function(event) {
+      event.preventDefault();
+      let currentQues = STORE.questions[STORE.currentQuestion];
+      let selectedOption = $("input[name=options]:checked").val();
+      if (!selectedOption) {
+        alert("Choose an option");
+        return;
+      } 
+      let id_num = currentQues.options.findIndex(i => i === selectedOption);
+      let id = "#js-r" + ++id_num;
+      $('span').removeClass("right-answer wrong-answer");
+      if(selectedOption === currentQues.answer) {
+        STORE.score++; 
+        $(`${id}`).append(`You got it right<br/>`);
+        $(`${id}`).addClass("right-answer");
+      }
+      else {
+        $(`${id}`).append(`You got it wrong <br/> The answer is "${currentQues.answer}"<br/>`);
+        $(`${id}`).addClass("wrong-answer");
+      }
+  
+      STORE.currentQuestion++;
+      $("#js-score").text(`Score: ${STORE.score}/${STORE.questions.length}`);
+      $('#answer').hide();
+      $("input[type=radio]").attr('disabled', true);
+      $('#next-question').show();
+    });
+  }
+
 
 $(begin);
