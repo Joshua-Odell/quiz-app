@@ -11,6 +11,7 @@ function begin() {
         //run pullQues
         pullQuestion();
         console.log("ignition");
+        questionCheck();
     });
    
 }
@@ -18,9 +19,9 @@ function begin() {
 function pullQuestion() {
     //fill in a form with information from list 
     //create a submit button
-    const questionCount = 0
+    let questionCount = 0
     const currentQuestion = $(
-        `<div>
+        `<div class="generatedQuestion">
                 <h2>
                     ${list[questionCount].question}
                 </h2>
@@ -37,11 +38,15 @@ function pullQuestion() {
 
                 </form>
                 <p> 
-                    Mission Completion: ${percentage} <br>
+                    Mission Completion: ${percentage}% <br>
                     ${quotes[0].quote}
                 </p>
             </div>`
     );
+    let currentQues = list[questionCount];
+    console.log(currentQues);
+    questionCount ++;
+    console.log(questionCount)
     //return and display %
     //
     $("main").html(currentQuestion);
@@ -52,14 +57,20 @@ function pullQuestion() {
 
 function questionCheck() {
     //listen for form submit button
-    $(document).on('click', '.nextQuestion', function(e){ 
+    //this event listener is not functional
+    $(document).on('click', '#nextQuestion', function(e){ 
         e.preventDefault;
-        questionCount ++;
+        questionCount ++; //There is a scope issue here
+        let submittedAwnser = $("input[name=options]:checked").val();
+        alert(submittedAwnser);
+        if (list[questionCount].awnser === submitedAwnser){
+            result ++;
+            console.log("result increased");
+        };
     });
-    if (list[questionCount].awnser === submitedAwnser){
-        result ++;
-    };
-    pullQuestion();
+    //
+    //alert("questionCheck run")
+    //pullQuestion();
     //check if awnser was correct
     //update percentage
     //call pullQuestion
@@ -75,39 +86,12 @@ function startOver() {
     //call the begin function 
 }
 
+function run(){
+    begin();
+    questionCheck();
+}
 
 
 
-// This is the code used for an example
-function handleSelectOption() {
-    $('body').on("submit",'#js-questions', function(event) {
-      event.preventDefault();
-      let currentQues = STORE.questions[STORE.currentQuestion];
-      let selectedOption = $("input[name=options]:checked").val();
-      if (!selectedOption) {
-        alert("Choose an option");
-        return;
-      } 
-      let id_num = currentQues.options.findIndex(i => i === selectedOption);
-      let id = "#js-r" + ++id_num;
-      $('span').removeClass("right-answer wrong-answer");
-      if(selectedOption === currentQues.answer) {
-        STORE.score++; 
-        $(`${id}`).append(`You got it right<br/>`);
-        $(`${id}`).addClass("right-answer");
-      }
-      else {
-        $(`${id}`).append(`You got it wrong <br/> The answer is "${currentQues.answer}"<br/>`);
-        $(`${id}`).addClass("wrong-answer");
-      }
-  
-      STORE.currentQuestion++;
-      $("#js-score").text(`Score: ${STORE.score}/${STORE.questions.length}`);
-      $('#answer').hide();
-      $("input[type=radio]").attr('disabled', true);
-      $('#next-question').show();
-    });
-  }
 
-
-$(begin); // Test save
+$(run); // Test save
