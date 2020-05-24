@@ -37,7 +37,7 @@ function openningScreen() {
 }
 
 function currentQuestion(questionCount) {
-    const currentQuestion = $(
+    const currentQuestion =
         `<div>
                 <h2>
                     ${list[questionCount].question}
@@ -59,7 +59,7 @@ function currentQuestion(questionCount) {
                     "Temporary"
                 </p>
             </div>`
-    );
+    ;
     $("main").html(currentQuestion);
 }
 
@@ -75,10 +75,11 @@ function pullQuestion() {
     let questionCount = 0;
     currentQuestion(questionCount);
     // This listener is not functioning
-    $('#nexQuestion').on("click", function(e){
+
+    $('.app').on("click", ".nextQuestion", function(e){
         e.preventDefault();
         alert("next Question");
-        questionCheck();
+        //questionCheck();
         
     });
     //check remaining questions if none call display results function
@@ -115,36 +116,36 @@ function run(){
 
 
 
-// This is the code used for an example
-function handleSelectOption() {
-    $('body').on("submit",'#js-questions', function(event) {
-      event.preventDefault();
-      let currentQues = STORE.questions[STORE.currentQuestion];
-      let selectedOption = $("input[name=options]:checked").val();
-      if (!selectedOption) {
-        alert("Choose an option");
-        return;
-      } 
-      let id_num = currentQues.options.findIndex(i => i === selectedOption);
-      let id = "#js-r" + ++id_num;
-      $('span').removeClass("right-answer wrong-answer");
-      if(selectedOption === currentQues.answer) {
-        STORE.score++; 
-        $(`${id}`).append(`You got it right<br/>`);
-        $(`${id}`).addClass("right-answer");
-      }
-      else {
-        $(`${id}`).append(`You got it wrong <br/> The answer is "${currentQues.answer}"<br/>`);
-        $(`${id}`).addClass("wrong-answer");
-      }
+// // This is the code used for an example
+// function handleSelectOption() {
+//     $('body').on("submit",'#js-questions', function(event) {
+//       event.preventDefault();
+//       let currentQues = STORE.questions[STORE.currentQuestion];
+//       let selectedOption = $("input[name=options]:checked").val();
+//       if (!selectedOption) {
+//         alert("Choose an option");
+//         return;
+//       } 
+//       let id_num = currentQues.options.findIndex(i => i === selectedOption);
+//       let id = "#js-r" + ++id_num;
+//       $('span').removeClass("right-answer wrong-answer");
+//       if(selectedOption === currentQues.answer) {
+//         STORE.score++; 
+//         $(`${id}`).append(`You got it right<br/>`);
+//         $(`${id}`).addClass("right-answer");
+//       }
+//       else {
+//         $(`${id}`).append(`You got it wrong <br/> The answer is "${currentQues.answer}"<br/>`);
+//         $(`${id}`).addClass("wrong-answer");
+//       }
   
-      STORE.currentQuestion++;
-      $("#js-score").text(`Score: ${STORE.score}/${STORE.questions.length}`);
-      $('#answer').hide();
-      $("input[type=radio]").attr('disabled', true);
-      $('#next-question').show();
-    });
-  }
+//       STORE.currentQuestion++;
+//       $("#js-score").text(`Score: ${STORE.score}/${STORE.questions.length}`);
+//       $('#answer').hide();
+//       $("input[type=radio]").attr('disabled', true);
+//       $('#next-question').show();
+//     });
+ // }
 
 function run (){
     begin();
