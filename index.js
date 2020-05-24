@@ -74,9 +74,12 @@ function pullQuestion() {
     //This counter needs to incriment
     let questionCount = 0;
     currentQuestion(questionCount);
+    // This listener is not functioning
     $('#nexQuestion').on("click", function(e){
         e.preventDefault();
+        alert("next Question");
         questionCheck();
+        
     });
     //check remaining questions if none call display results function
     console.log("Question Generated");
