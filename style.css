@@ -2,11 +2,15 @@ main {
     background-color: black;
     background-image:URL(pictures/background.jpg) ;
     color:white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 main div {
     max-width: 60%;
     background-color: black;
+<<<<<<< HEAD
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,4 +20,6 @@ main div {
     align-items: center;
     justify-content: center;
     text-align: center;
+=======
+>>>>>>> parent of e4ad82c... centered text
 }
