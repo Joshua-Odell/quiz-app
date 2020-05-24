@@ -1,26 +1,52 @@
-
+const STORE = {
+    questionsAnswered: 0,
+    responses: []
+}
 
 function begin() {
     //listener for start quiz button press
     $('#start').on("click", function(e){
         //stop default GETTING A NOT DEFINED ERROR
         e.preventDefault();
-         //reset percentage to zero
-        const result=0;
-        console.log(result);
-        //run pullQues
-        pullQuestion();
         console.log("ignition");
-        questionCheck();
+        render(1);
+        
     });
-   
 }
 
-function pullQuestion() {
-    //fill in a form with information from list 
-    //create a submit button
-    let questionCount = 0
-    const currentQuestion = $(
+function home() {
+    return `
+        <div class="js-quiz-start">
+            <h2>Welcome Explorer:</h2>
+            <p>
+                The Rocket is fully fueled and ready to embark.
+                With you at the Helm we have the utmost confidence that you will reach Neptune. <br>
+                Ignition in:<br>
+                3 . . . <br>
+                2 . . . <br>
+                1 . . . <br>
+            </p>
+            <form>
+                <input type="button" id="start" value="IGNITION">
+            </form>
+        </div>
+    `
+}
+
+function render(textQuestion) {
+    let question;
+    if (textQuestion  === 0) {
+        question = home()
+    } else {
+        question = pullQuestion(0);
+    }
+    $('.app').append(question)
+    console.log("rendering")
+    begin()
+}
+
+function pullQuestion(questionCount) {
+    return 
         `<div class="generatedQuestion">
                 <h2>
                     ${list[questionCount].question}
@@ -38,21 +64,10 @@ function pullQuestion() {
 
                 </form>
                 <p> 
-                    Mission Completion: ${percentage}% <br>
-                    ${quotes[0].quote}
+                    Mission Completion: "test"% <br>
+                    "test"
                 </p>
             </div>`
-    );
-    let currentQues = list[questionCount];
-    console.log(currentQues);
-    questionCount ++;
-    console.log(questionCount)
-    //return and display %
-    //
-    $("main").html(currentQuestion);
-    //check remaining questions if none call display results function
-    questionCheck();
-    console.log("Question Generated");
 }
 
 function questionCheck() {
@@ -87,8 +102,7 @@ function startOver() {
 }
 
 function run(){
-    begin();
-    questionCheck();
+    render(0);
 }
 
 

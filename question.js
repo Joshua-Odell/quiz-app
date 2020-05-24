@@ -6,7 +6,6 @@ const list=[
     {question:"Neptune is a ____?", o1:"Gas Giant", o2:"Red Dwarf", o3:"Terrestrial Planet", o4:"Ice Giant", awnser:"Gas Giant"}
 ]
 
-const percentage= 0
 
 const quotes=[
     {progress:0, quote:"You have a long way to go yet"},
