@@ -4,62 +4,41 @@ const STORE = {
 }
 
 function begin() {
+    openningScreen();
     //listener for start quiz button press
-    $('#start').on("click", function(e){
-        //stop default GETTING A NOT DEFINED ERROR
-        e.preventDefault();
-        console.log("ignition");
-<<<<<<< HEAD
-        render(1);
-        
-=======
->>>>>>> parent of e4ad82c... centered text
-    });
+     $('#start').on("click", function(e){
+         //stop default GETTING A NOT DEFINED ERROR
+         e.preventDefault();
+         console.log("ignition");
+         pullQuestion();
+     });
 }
 
-<<<<<<< HEAD
-function home() {
-    return `
-        <div class="js-quiz-start">
-            <h2>Welcome Explorer:</h2>
-            <p>
-                The Rocket is fully fueled and ready to embark.
-                With you at the Helm we have the utmost confidence that you will reach Neptune. <br>
-                Ignition in:<br>
-                3 . . . <br>
-                2 . . . <br>
-                1 . . . <br>
-            </p>
-            <form>
-                <input type="button" id="start" value="IGNITION">
-            </form>
-        </div>
-    `
+function openningScreen() {
+    const openningScreen = $(
+            `<div>
+                <h2>
+                    Welcome Explorer:
+                </h2>
+                <p>
+                    The Rocket is fully fueled and ready to embark.
+                    With you at the Helm we have the utmost confidence that you will reach Neptune. <br>
+                    Ignition in:<br>
+                    3 . . . <br>
+                    2 . . . <br>
+                    1 . . . <br>
+                </p>
+                <form>
+                    <input type="button" id="start" value="IGNITION">
+                </form>
+            </div>` 
+    )
+    $("main").html(openningScreen);
 }
 
-function render(textQuestion) {
-    let question;
-    if (textQuestion  === 0) {
-        question = home()
-    } else {
-        question = pullQuestion(0);
-    }
-    $('.app').append(question)
-    console.log("rendering")
-    begin()
-}
-
-function pullQuestion(questionCount) {
-    return 
-        `<div class="generatedQuestion">
-=======
-function pullQuestion() {
-    //fill in a form with information from list 
-    //create a submit button
-    const questionCount = 0
+function currentQuestion(questionCount) {
     const currentQuestion = $(
         `<div>
->>>>>>> parent of e4ad82c... centered text
                 <h2>
                     ${list[questionCount].question}
                 </h2>
@@ -76,36 +55,42 @@ function pullQuestion() {
 
                 </form>
                 <p> 
-<<<<<<< HEAD
-                    Mission Completion: "test"% <br>
-                    "test"
-                </p>
-            </div>`
-=======
-                    Mission Completion: ${percentage} <br>
-                    ${quotes[0].quote}
+                    Mission Completion: "Temporary" <br>
+                    "Temporary"
                 </p>
             </div>`
     );
-    //return and display %
-    //
     $("main").html(currentQuestion);
+}
+
+function resultsScreen() {
+    //This will display the end results of the quiz complete with a try again button that resets the programs and counters
+}
+
+function pullQuestion() {
+    //fill in a form with information from list 
+    //create a submit button
+    //return and display %
+    //This counter needs to incriment
+    let questionCount = 0;
+    currentQuestion(questionCount);
+    $('#nexQuestion').on("click", function(e){
+        e.preventDefault();
+        questionCheck();
+    });
     //check remaining questions if none call display results function
-    questionCheck();
     console.log("Question Generated");
->>>>>>> parent of e4ad82c... centered text
 }
 
 function questionCheck() {
     //listen for form submit button
-    $(document).on('click', '.nextQuestion', function(e){ 
-        e.preventDefault;
-        questionCount ++;
-    });
-    if (list[questionCount].awnser === submitedAwnser){
-        result ++;
-    };
+    // if (list[questionCount].awnser === submitedAwnser){
+    //     result ++;
+    // };
+    questionCount ++;
+    console.log(questionCount)
     pullQuestion();
+    //pullQuestion();
     //check if awnser was correct
     //update percentage
     //call pullQuestion
@@ -121,12 +106,9 @@ function startOver() {
     //call the begin function 
 }
 
-<<<<<<< HEAD
 function run(){
     render(0);
 }
-=======
->>>>>>> parent of e4ad82c... centered text
 
 
 
@@ -161,5 +143,8 @@ function handleSelectOption() {
     });
   }
 
+function run (){
+    begin();
+}
 
-$(begin); // Test save
+$(run); // Test save
