@@ -1,11 +1,9 @@
-const STORE = {
-    questionsAnswered: 0,
-    responses: []
-}
 
 let questionCount = 0;
 let submitedAwnser = "";
+let generatedQuote = "";
 let result = 0;
+let percentage = 0;
 
 
 function begin() {
@@ -61,8 +59,8 @@ function currentQuestion(questionCount) {
 
                 </form>
                 <p> 
-                    Mission Completion: ${result} <br>
-                    "Temporary"
+                    You have correctly awnsered  ${percentage}% of questions <br>
+                    You have completed ${questionCount} of ${list.length}
                 </p>
             </div>`
     ;
@@ -72,13 +70,13 @@ function currentQuestion(questionCount) {
 function resultsScreen() {
     //This will display the end results of the quiz complete with a try again button that resets the programs and counters
     const finalScreen = $(
-        `<div>
+            `<div>
                 <h2>
                     Mission Debrief:
                 </h2>
                 <p>
-                    Your Mission Sucessfuly Made it ${result}% of the way to Neptune <br>
-                    Insert generated Quote Here <br>
+                    Your Mission Sucessfuly Made it ${percentage}% of the way to Neptune <br>
+                    ${generatedQuote} <br>
                 </p>
                 <form>
                     <input type="button" id="restart" value="Try Again">
@@ -86,6 +84,14 @@ function resultsScreen() {
             </div>` 
     )
     $(".app").html(finalScreen);
+}
+
+function correctScreen(){
+    //This screen will give feedback that the user was correct
+}
+
+function incorrectScreen(){
+    //This screen will give feedback that the user was incorrect and offer the correct choice.
 }
 
 function pullQuestion() {
@@ -106,6 +112,8 @@ function pullQuestion() {
         //this needs to call the results screen and skip the rest of the pullquestion function
     }
     else {
+        quoteGenerator();
+        console.log(generatedQuote);
         resultsScreen();
         console.log("results");
         $('#restart').on("click", function(e){
@@ -119,14 +127,26 @@ function pullQuestion() {
 
 function questionCheck() {
     //listen for form submit button
-    if (list[questionCount].awnser === submitedAwnser){
-        console.log("correct") 
-        result ++;
-        console.log(result);
-    };
-    questionCount ++;
-    console.log(questionCount);
-    pullQuestion();
+    if (submitedAwnser === undefined) {
+        alert("you must awnser this question!");
+        
+    }
+    else {
+        if (list[questionCount].awnserChoice === submitedAwnser){
+            console.log("correct") 
+            result ++;
+            console.log(result);
+        }
+        else {
+            correctAwnser = list[questionCount].awnser;
+            alert("The correct Awnser is " + correctAwnser);    
+        }
+        percentage = result * 20;
+        questionCount ++;
+        console.log(questionCount);
+        pullQuestion();
+    }
+   
     //check if awnser was correct
     //update percentage
     //call pullQuestion
@@ -135,12 +155,20 @@ function questionCheck() {
 function startOver() {
     questionCount = 0;
     result = 0;
+    percentage = 0;
     begin();
     //listen for the start over button
     //reset the percentage count to zero
     //call the begin function 
 }
 
+function quoteGenerator() {
+    for (i=0; i<quotes.length; i++){
+        if (quotes[i].progress === percentage){
+            generatedQuote= quotes[i].quote;
+        }
+    }
+}
 
 function run (){
     begin();
