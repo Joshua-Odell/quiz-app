@@ -3,6 +3,8 @@ const STORE = {
     responses: []
 }
 
+let questionCount = 0;
+
 function begin() {
     openningScreen();
     //listener for start quiz button press
@@ -72,16 +74,12 @@ function pullQuestion() {
     //fill in a form with information from list 
     //create a submit button
     //return and display %
-    //This counter needs to incriment
-    let questionCount = 0;
     currentQuestion(questionCount);
-    // This listener is not functioning
-
     $('#nextQuestion').on("click", function(e){
         //stop default GETTING A NOT DEFINED ERROR
         e.preventDefault();
-        console.log("ignition");
-        pullQuestion();
+        console.log("test");
+        questionCheck();
     });
     //check remaining questions if none call display results function
     console.log("Question Generated");
@@ -93,9 +91,8 @@ function questionCheck() {
     //     result ++;
     // };
     questionCount ++;
-    console.log(questionCount)
+    console.log(questionCount);
     pullQuestion();
-    //pullQuestion();
     //check if awnser was correct
     //update percentage
     //call pullQuestion
@@ -106,6 +103,7 @@ function percentageQuote() {
 }
 
 function startOver() {
+    questionCount = 0;
     //listen for the start over button
     //reset the percentage count to zero
     //call the begin function 
