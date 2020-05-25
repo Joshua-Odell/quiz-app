@@ -74,13 +74,11 @@ function resultsScreen() {
     const finalScreen = $(
         `<div>
                 <h2>
-                    Welcome Explorer:
+                    Mission Debrief:
                 </h2>
                 <p>
-                    End Screen <br>
-                    3 . . . <br>
-                    2 . . . <br>
-                    1 . . . <br>
+                    Your Mission Sucessfuly Made it ${result}% of the way to Neptune <br>
+                    Insert generated Quote Here <br>
                 </p>
                 <form>
                     <input type="button" id="restart" value="Try Again">
@@ -136,6 +134,7 @@ function questionCheck() {
 
 function startOver() {
     questionCount = 0;
+    result = 0;
     begin();
     //listen for the start over button
     //reset the percentage count to zero
