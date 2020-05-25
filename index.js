@@ -33,12 +33,13 @@ function openningScreen() {
                 </form>
             </div>` 
     )
-    $("main").html(openningScreen);
+    $(".app").html(openningScreen);
 }
+
 
 function currentQuestion(questionCount) {
     const currentQuestion =
-        `<div>
+        `<div class="test">
                 <h2>
                     ${list[questionCount].question}
                 </h2>
@@ -60,7 +61,7 @@ function currentQuestion(questionCount) {
                 </p>
             </div>`
     ;
-    $("main").html(currentQuestion);
+    $(".app").html(currentQuestion);
 }
 
 function resultsScreen() {
@@ -76,11 +77,11 @@ function pullQuestion() {
     currentQuestion(questionCount);
     // This listener is not functioning
 
-    $('.app').on("click", ".nextQuestion", function(e){
+    $('#nextQuestion').on("click", function(e){
+        //stop default GETTING A NOT DEFINED ERROR
         e.preventDefault();
-        alert("next Question");
-        //questionCheck();
-        
+        console.log("ignition");
+        pullQuestion();
     });
     //check remaining questions if none call display results function
     console.log("Question Generated");
@@ -108,10 +109,6 @@ function startOver() {
     //listen for the start over button
     //reset the percentage count to zero
     //call the begin function 
-}
-
-function run(){
-    render(0);
 }
 
 
