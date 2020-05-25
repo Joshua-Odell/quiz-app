@@ -39,7 +39,7 @@ function openningScreen() {
 
 function currentQuestion(questionCount) {
     const currentQuestion =
-        `<div class="test">
+        `   <div>
                 <h2>
                     ${list[questionCount].question}
                 </h2>

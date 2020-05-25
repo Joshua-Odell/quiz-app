@@ -1,4 +1,4 @@
-main {
+body {
     background-color: black;
     background-image:URL(pictures/background.jpg) ;
     color:white;
@@ -7,19 +7,36 @@ main {
     background-attachment: fixed;
 }
 
+header {
+    text-align: center;
+}
+
 main div {
     max-width: 60%;
     background-color: black;
-<<<<<<< HEAD
+    opacity: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.generatedQuestion {
+main div .app {
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+/** This one is not working
+div .app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+**/
+
+.app {
+    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-=======
->>>>>>> parent of e4ad82c... centered text
 }
