@@ -4,6 +4,9 @@ const STORE = {
 }
 
 let questionCount = 0;
+let submitedAwnser = "";
+let result = 0;
+
 
 function begin() {
     openningScreen();
@@ -41,7 +44,7 @@ function openningScreen() {
 
 function currentQuestion(questionCount) {
     const currentQuestion =
-        `   <div>
+           `<div>
                 <h2>
                     ${list[questionCount].question}
                 </h2>
@@ -58,7 +61,7 @@ function currentQuestion(questionCount) {
 
                 </form>
                 <p> 
-                    Mission Completion: "Temporary" <br>
+                    Mission Completion: ${result} <br>
                     "Temporary"
                 </p>
             </div>`
@@ -68,28 +71,61 @@ function currentQuestion(questionCount) {
 
 function resultsScreen() {
     //This will display the end results of the quiz complete with a try again button that resets the programs and counters
+    const finalScreen = $(
+        `<div>
+                <h2>
+                    Welcome Explorer:
+                </h2>
+                <p>
+                    End Screen <br>
+                    3 . . . <br>
+                    2 . . . <br>
+                    1 . . . <br>
+                </p>
+                <form>
+                    <input type="button" id="restart" value="Try Again">
+                </form>
+            </div>` 
+    )
+    $(".app").html(finalScreen);
 }
 
 function pullQuestion() {
     //fill in a form with information from list 
     //create a submit button
     //return and display %
-    currentQuestion(questionCount);
-    $('#nextQuestion').on("click", function(e){
-        //stop default GETTING A NOT DEFINED ERROR
-        e.preventDefault();
-        console.log("test");
-        questionCheck();
-    });
+    if (questionCount<list.length){
+        currentQuestion(questionCount);
+        $('#nextQuestion').on("click", function(e){
+            //stop default GETTING A NOT DEFINED ERROR
+            e.preventDefault();
+            submitedAwnser = $("input[name=options]:checked").val();
+            console.log(submitedAwnser);
+            questionCheck();
+        });
+        //check remaining questions if none call display results function
+        console.log("Question Generated");
+        //this needs to call the results screen and skip the rest of the pullquestion function
+    }
+    else {
+        resultsScreen();
+        console.log("results");
+        $('#restart').on("click", function(e){
+            startOver();
+        });
+
+    }
     //check remaining questions if none call display results function
     console.log("Question Generated");
 }
 
 function questionCheck() {
     //listen for form submit button
-    // if (list[questionCount].awnser === submitedAwnser){
-    //     result ++;
-    // };
+    if (list[questionCount].awnser === submitedAwnser){
+        console.log("correct") 
+        result ++;
+        console.log(result);
+    };
     questionCount ++;
     console.log(questionCount);
     pullQuestion();
@@ -98,49 +134,14 @@ function questionCheck() {
     //call pullQuestion
 }
 
-function percentageQuote() {
-    //based on percentage return a quote
-}
-
 function startOver() {
     questionCount = 0;
+    begin();
     //listen for the start over button
     //reset the percentage count to zero
     //call the begin function 
 }
 
-
-
-// // This is the code used for an example
-// function handleSelectOption() {
-//     $('body').on("submit",'#js-questions', function(event) {
-//       event.preventDefault();
-//       let currentQues = STORE.questions[STORE.currentQuestion];
-//       let selectedOption = $("input[name=options]:checked").val();
-//       if (!selectedOption) {
-//         alert("Choose an option");
-//         return;
-//       } 
-//       let id_num = currentQues.options.findIndex(i => i === selectedOption);
-//       let id = "#js-r" + ++id_num;
-//       $('span').removeClass("right-answer wrong-answer");
-//       if(selectedOption === currentQues.answer) {
-//         STORE.score++; 
-//         $(`${id}`).append(`You got it right<br/>`);
-//         $(`${id}`).addClass("right-answer");
-//       }
-//       else {
-//         $(`${id}`).append(`You got it wrong <br/> The answer is "${currentQues.answer}"<br/>`);
-//         $(`${id}`).addClass("wrong-answer");
-//       }
-  
-//       STORE.currentQuestion++;
-//       $("#js-score").text(`Score: ${STORE.score}/${STORE.questions.length}`);
-//       $('#answer').hide();
-//       $("input[type=radio]").attr('disabled', true);
-//       $('#next-question').show();
-//     });
- // }
 
 function run (){
     begin();
