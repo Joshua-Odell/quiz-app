@@ -12,7 +12,6 @@ function begin() {
      $('#start').on("click", function(e){
          //stop default GETTING A NOT DEFINED ERROR
          e.preventDefault();
-         console.log("ignition");
          pullQuestion();
      });
 }
@@ -138,25 +137,20 @@ function pullQuestion() {
             //stop default GETTING A NOT DEFINED ERROR
             e.preventDefault();
             submittedAnswer = $("input[name=options]:checked").val();
-            console.log(submittedAnswer);
             questionCheck();
         });
         //check remaining questions if none call display results function
-        console.log("Question Generated");
         //this needs to call the results screen and skip the rest of the pullQuestion function
     }
     else {
         quoteGenerator();
-        console.log(generatedQuote);
         $(".app").html(resultsScreen());
-        console.log("results");
         $('#restart').on("click", function(e){
             startOver();
         });
 
     }
     //check remaining questions if none call display results function
-    console.log("Question Generated");
 }
 
 function questionCheck() {
@@ -167,7 +161,6 @@ function questionCheck() {
     }
     else {
         if (list[questionCount].answerChoice === submittedAnswer){
-            console.log("correct") 
             result ++;
             percentage = result * 20;
             $(".app").html(correctScreen());
