@@ -19,11 +19,11 @@ function begin() {
 
 function openningScreen() {
     const openningScreen = $(
-            `<div>
-                <h2>
+            `<div class="flex-container">
+                <h2 class="item">
                     Welcome Explorer:
                 </h2>
-                <p>
+                <p class="item">
                     The Rocket is fully fueled and ready to embark.
                     With you at the Helm we have the utmost confidence that you will reach Neptune. <br>
                     Ignition in:<br>
@@ -31,7 +31,7 @@ function openningScreen() {
                     2 . . . <br>
                     1 . . . <br>
                 </p>
-                <form>
+                <form class="item">
                     <input type="button" id="start" value="IGNITION">
                 </form>
             </div>` 
@@ -42,7 +42,7 @@ function openningScreen() {
 
 function currentQuestion(questionCount) {
     const currentQuestion =
-           `<div>
+           `<div class="flex-container">
                 <h2>
                     ${list[questionCount].question}
                 </h2>
@@ -55,7 +55,8 @@ function currentQuestion(questionCount) {
                     <label for="option3">${list[questionCount].o3}</label><br>
                     <input type="radio" id="option4" name="options" value="option4">
                     <label for="option4">${list[questionCount].o4}</label><br> <!--correct-->
-                    <input type="submit" class="nextQuestion" id="nextQuestion" value="Next Question">
+                    <br>
+                    <input type="submit" class="nextQuestion" id="nextQuestion" value="Submit">
 
                 </form>
                 <p> 
@@ -70,12 +71,13 @@ function currentQuestion(questionCount) {
 function resultsScreen() {
     //This will display the end results of the quiz complete with a try again button that resets the programs and counters
     const finalScreen = $(
-            `<div>
+            `<div class="flex-container">
                 <h2>
                     Mission Debrief:
                 </h2>
                 <p>
                     Your Mission Sucessfuly Made it ${percentage}% of the way to Neptune <br>
+                    <br>
                     ${generatedQuote} <br>
                 </p>
                 <form>
@@ -88,10 +90,39 @@ function resultsScreen() {
 
 function correctScreen(){
     //This screen will give feedback that the user was correct
+    const correctScreen = $(
+        `<div class="flex-container">
+            <h2>
+                You are a Compitent and knowledgable commander
+            </h2>
+            <p>
+                !!Insert Image Here!!
+            </p>
+            <form>
+                <input type="button" id="submit" value="Next Question">
+            </form>
+        </div>` 
+)
+$(".app").html(correctScreen);
 }
 
 function incorrectScreen(){
     //This screen will give feedback that the user was incorrect and offer the correct choice.
+    const incorrectScreen = $(
+        `<div class="flex-container">
+            <h2>
+                If you are going to be sucessful you will need to preform better
+            </h2>
+            <p>
+                !!Insert Image Here!!
+                The correct awnser is ${correctAwnser}
+            </p>
+            <form>
+                <input type="button" id="submit" value="Next Question">
+            </form>
+        </div>` 
+)
+$(".app").html(incorrectScreen);
 }
 
 function pullQuestion() {
@@ -135,16 +166,22 @@ function questionCheck() {
         if (list[questionCount].awnserChoice === submitedAwnser){
             console.log("correct") 
             result ++;
-            console.log(result);
+            percentage = result * 20;
+            correctScreen();
+            
         }
         else {
             correctAwnser = list[questionCount].awnser;
-            alert("The correct Awnser is " + correctAwnser);    
+            alert("The correct Awnser is " + correctAwnser);
+            percentage = result * 20;
+            incorrectScreen();
+                
         }
-        percentage = result * 20;
         questionCount ++;
-        console.log(questionCount);
-        pullQuestion();
+        $('#submit').on("click", function(e){
+            pullQuestion();
+        });
+        
     }
    
     //check if awnser was correct

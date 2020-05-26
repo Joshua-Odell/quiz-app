@@ -18,12 +18,20 @@ main div {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: auto;
 }
 
-main div .app {
+main div group {
+
     align-items: center;
     justify-content: center;
     opacity: 1;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+
 }
 
 /** This one is not working
