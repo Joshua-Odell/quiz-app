@@ -26,6 +26,7 @@ function openningScreen() {
                 <p class="item">
                     The Rocket is fully fueled and ready to embark.
                     With you at the Helm we have the utmost confidence that you will reach Neptune. <br>
+                    <br>
                     Ignition in:<br>
                     3 . . . <br>
                     2 . . . <br>

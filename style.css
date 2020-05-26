@@ -16,13 +16,14 @@ header {
 }
 
 main div {
-    max-width: 60%;
+    max-width: 80%;
     background-color: black;
     opacity: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
+    font-size: small;
 }
 
 main div p {
@@ -47,7 +48,7 @@ main div group {
 }
 
 .flex-container img {
-    max-width: 85%;
+    max-width: 90%;
     height: auto;
     padding: 0px 0px 30px 0px;
 }
@@ -65,4 +66,13 @@ div .app {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+@media only screen and (min-width: 640px){
+    main div {
+        font-size: medium;
+        max-width: 60%;
+    }
+
+    
 }
