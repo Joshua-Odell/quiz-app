@@ -18,7 +18,7 @@ function begin() {
 }
 
 function openingScreen() {
-    return $(
+    return (
             `<div class="flex-container">
                 <h2 class="item">
                     Welcome Explorer:
@@ -43,7 +43,7 @@ function openingScreen() {
 
 
 function currentQuestion(questionCount) {
-    return $(
+    return (
            `<div class="flex-container">
                 <h2>
                     ${list[questionCount].question}
@@ -74,7 +74,7 @@ function currentQuestion(questionCount) {
 
 function resultsScreen() {
     //This will display the end results of the quiz complete with a try again button that resets the programs and counters
-    return $(
+    return (
             `<div class="flex-container">
                 <h2>
                     Mission Debrief:
@@ -97,7 +97,7 @@ function resultsScreen() {
 
 function correctScreen(){
     //This screen will give feedback that the user was correct
-    return $(
+    return (
         `<div class="flex-container">
             <h2>
                 You are a Competent and knowledgeable commander!
@@ -110,9 +110,10 @@ function correctScreen(){
     )
 }
 
-function incorrectScreen(){
+function incorrectScreen(correctAnswer){
     //This screen will give feedback that the user was incorrect and offer the correct choice.
-    return $(
+    // I am not sure how to add an argument to the string without using ${}
+    return (
         `<div class="flex-container">
             <h2>
                 If you are going to be successful you will need to preform better
@@ -120,7 +121,7 @@ function incorrectScreen(){
             <div> <img src="pictures/mistake.jpg" alt="a lego figurine standing next to a small grey lego space ship"> </div>
             <p>
                 
-                The correct answer is ${correctAnswer}.
+                The correct answer is correctAnswer.
             </p>
             <form>
                 <input type="button" id="submit" value="Next Question">
