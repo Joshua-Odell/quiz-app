@@ -1,13 +1,13 @@
 
 let questionCount = 0;
-let submitedAwnser = "";
+let submittedAnswer = "";
 let generatedQuote = "";
 let result = 0;
 let percentage = 0;
 
 
 function begin() {
-    openningScreen();
+    $(".app").html(openingScreen());
     //listener for start quiz button press
      $('#start').on("click", function(e){
          //stop default GETTING A NOT DEFINED ERROR
@@ -17,8 +17,8 @@ function begin() {
      });
 }
 
-function openningScreen() {
-    const openningScreen = $(
+function openingScreen() {
+    return $(
             `<div class="flex-container">
                 <h2 class="item">
                     Welcome Explorer:
@@ -37,12 +37,13 @@ function openningScreen() {
                 </form>               
             </div>` 
     )
-    $(".app").html(openningScreen);
+    //return openingScreen;
+    
 }
 
 
 function currentQuestion(questionCount) {
-    const currentQuestion =
+    return $(
            `<div class="flex-container">
                 <h2>
                     ${list[questionCount].question}
@@ -64,23 +65,22 @@ function currentQuestion(questionCount) {
                     </form>
                 </fieldset>
                 <p> 
-                    You have correctly awnsered  ${percentage}% of questions <br>
+                    You have correctly answered  ${percentage}% of questions <br>
                     You have completed ${questionCount} of ${list.length}
                 </p>
             </div>`
-    ;
-    $(".app").html(currentQuestion);
+    )   
 }
 
 function resultsScreen() {
     //This will display the end results of the quiz complete with a try again button that resets the programs and counters
-    const finalScreen = $(
+    return $(
             `<div class="flex-container">
                 <h2>
                     Mission Debrief:
                 </h2>
                 <p>
-                    Your Mission Sucessfuly Made it ${percentage}% of the way to Neptune <br>
+                    Your Mission Successfully Made it ${percentage}% of the way to Neptune <br>
                     <br>
                     Out of ${list.length} questions you got ${result} correct <br>
                 </p>
@@ -93,43 +93,40 @@ function resultsScreen() {
                 </form>
                 </div>` 
     )
-    $(".app").html(finalScreen);
 }
 
 function correctScreen(){
     //This screen will give feedback that the user was correct
-    const correctScreen = $(
+    return $(
         `<div class="flex-container">
             <h2>
-                You are a Compitent and knowledgable commander!
+                You are a Competent and knowledgeable commander!
             </h2>
-            <div> <img src="pictures/sucess.jpg" alt="A space ship taking off"></div>
+            <div> <img src="pictures/success.jpg" alt="A space ship taking off"></div>
             <form>
                 <input type="button" id="submit" value="Next Question">
             </form>
         </div>` 
-)
-$(".app").html(correctScreen);
+    )
 }
 
 function incorrectScreen(){
     //This screen will give feedback that the user was incorrect and offer the correct choice.
-    const incorrectScreen = $(
+    return $(
         `<div class="flex-container">
             <h2>
-                If you are going to be sucessful you will need to preform better
+                If you are going to be successful you will need to preform better
             </h2>
             <div> <img src="pictures/mistake.jpg" alt="a lego figurine standing next to a small grey lego space ship"> </div>
             <p>
                 
-                The correct awnser is ${correctAwnser}.
+                The correct answer is ${correctAnswer}.
             </p>
             <form>
                 <input type="button" id="submit" value="Next Question">
             </form>
         </div>` 
-)
-$(".app").html(incorrectScreen);
+    )
 }
 
 function pullQuestion() {
@@ -137,22 +134,22 @@ function pullQuestion() {
     //create a submit button
     //return and display %
     if (questionCount<list.length){
-        currentQuestion(questionCount);
+        $(".app").html(currentQuestion(questionCount));
         $('#nextQuestion').on("click", function(e){
             //stop default GETTING A NOT DEFINED ERROR
             e.preventDefault();
-            submitedAwnser = $("input[name=options]:checked").val();
-            console.log(submitedAwnser);
+            submittedAnswer = $("input[name=options]:checked").val();
+            console.log(submittedAnswer);
             questionCheck();
         });
         //check remaining questions if none call display results function
         console.log("Question Generated");
-        //this needs to call the results screen and skip the rest of the pullquestion function
+        //this needs to call the results screen and skip the rest of the pullQuestion function
     }
     else {
         quoteGenerator();
         console.log(generatedQuote);
-        resultsScreen();
+        $(".app").html(resultsScreen());
         console.log("results");
         $('#restart').on("click", function(e){
             startOver();
@@ -165,22 +162,22 @@ function pullQuestion() {
 
 function questionCheck() {
     //listen for form submit button
-    if (submitedAwnser === undefined) {
-        alert("you must awnser this question!");
+    if (submittedAnswer === undefined) {
+        alert("you must answer this question!");
         
     }
     else {
-        if (list[questionCount].awnserChoice === submitedAwnser){
+        if (list[questionCount].answerChoice === submittedAnswer){
             console.log("correct") 
             result ++;
             percentage = result * 20;
-            correctScreen();
+            $(".app").html(correctScreen());
             
         }
         else {
-            correctAwnser = list[questionCount].awnser;
+            correctAnswer = list[questionCount].answer;
             percentage = result * 20;
-            incorrectScreen();
+            $(".app").html(incorrectScreen());
                 
         }
         questionCount ++;
@@ -190,7 +187,7 @@ function questionCheck() {
         
     }
    
-    //check if awnser was correct
+    //check if answer was correct
     //update percentage
     //call pullQuestion
 }
