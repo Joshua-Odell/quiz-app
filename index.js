@@ -209,8 +209,4 @@ function quoteGenerator() {
     }
 }
 
-function run (){
-    begin();
-}
-
-$(run); 
+$(begin); 
