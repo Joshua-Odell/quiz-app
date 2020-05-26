@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@800&family=Space+Mono:ital@1&display=swap');
+
+
 body {
     background-color: black;
     background-image:URL(pictures/background.jpg) ;
@@ -9,6 +12,7 @@ body {
 
 header {
     text-align: center;
+    font-family: 'Eczar', serif;
 }
 
 main div {
@@ -19,6 +23,14 @@ main div {
     align-items: center;
     justify-content: center;
     margin: auto;
+}
+
+main div p {
+    font-family: 'Space Mono', monospace;
+}
+
+main div form {
+    font-family: 'Space Mono', monospace;
 }
 
 main div group {
@@ -32,6 +44,12 @@ main div group {
     display: flex;
     flex-direction: column;
 
+}
+
+.flex-container img {
+    max-width: 85%;
+    height: auto;
+    padding: 0px 0px 30px 0px;
 }
 
 /** This one is not working

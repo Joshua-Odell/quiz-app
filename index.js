@@ -32,8 +32,8 @@ function openningScreen() {
                     1 . . . <br>
                 </p>
                 <form class="item">
-                    <input type="button" id="start" value="IGNITION">
-                </form>
+                    <input type="button" id="start" value="BLAST OFF">
+                </form>               
             </div>` 
     )
     $(".app").html(openningScreen);
@@ -46,19 +46,22 @@ function currentQuestion(questionCount) {
                 <h2>
                     ${list[questionCount].question}
                 </h2>
-                <form>
-                    <input type="radio" id="option1" name="options" value="option1">
-                    <label for="option1">${list[questionCount].o1}</label><br>
-                    <input type="radio" id="option2" name="options" value="option2">
-                    <label for="option2">${list[questionCount].o2}</label><br>
-                    <input type="radio" id="option3" name="options" value="option3">
-                    <label for="option3">${list[questionCount].o3}</label><br>
-                    <input type="radio" id="option4" name="options" value="option4">
-                    <label for="option4">${list[questionCount].o4}</label><br> <!--correct-->
-                    <br>
-                    <input type="submit" class="nextQuestion" id="nextQuestion" value="Submit">
+                <fieldset>
+                    <legend>Multiple Choice</legend>
+                    <form>
+                        <input type="radio" id="option1" name="options" value="option1">
+                        <label for="option1">${list[questionCount].o1}</label><br>
+                        <input type="radio" id="option2" name="options" value="option2">
+                        <label for="option2">${list[questionCount].o2}</label><br>
+                        <input type="radio" id="option3" name="options" value="option3">
+                        <label for="option3">${list[questionCount].o3}</label><br>
+                        <input type="radio" id="option4" name="options" value="option4">
+                        <label for="option4">${list[questionCount].o4}</label><br> <!--correct-->
+                        <br>
+                        <input type="submit" class="nextQuestion" id="nextQuestion" value="Submit">
 
-                </form>
+                    </form>
+                </fieldset>
                 <p> 
                     You have correctly awnsered  ${percentage}% of questions <br>
                     You have completed ${questionCount} of ${list.length}
@@ -78,12 +81,16 @@ function resultsScreen() {
                 <p>
                     Your Mission Sucessfuly Made it ${percentage}% of the way to Neptune <br>
                     <br>
-                    ${generatedQuote} <br>
+                    Out of ${list.length} questions you got ${result} correct <br>
+                </p>
+                <img src="pictures/debrief.jpg" alt="A bunch of people staring at the camera in a conference room">
+                <p>
+                ${generatedQuote}
                 </p>
                 <form>
                     <input type="button" id="restart" value="Try Again">
                 </form>
-            </div>` 
+                </div>` 
     )
     $(".app").html(finalScreen);
 }
@@ -93,11 +100,9 @@ function correctScreen(){
     const correctScreen = $(
         `<div class="flex-container">
             <h2>
-                You are a Compitent and knowledgable commander
+                You are a Compitent and knowledgable commander!
             </h2>
-            <p>
-                !!Insert Image Here!!
-            </p>
+            <div> <img src="pictures/sucess.jpg" alt="A space ship taking off"></div>
             <form>
                 <input type="button" id="submit" value="Next Question">
             </form>
@@ -113,9 +118,10 @@ function incorrectScreen(){
             <h2>
                 If you are going to be sucessful you will need to preform better
             </h2>
+            <div> <img src="pictures/mistake.jpg" alt="a lego figurine standing next to a small grey lego space ship"> </div>
             <p>
-                !!Insert Image Here!!
-                The correct awnser is ${correctAwnser}
+                
+                The correct awnser is ${correctAwnser}.
             </p>
             <form>
                 <input type="button" id="submit" value="Next Question">
@@ -172,7 +178,6 @@ function questionCheck() {
         }
         else {
             correctAwnser = list[questionCount].awnser;
-            alert("The correct Awnser is " + correctAwnser);
             percentage = result * 20;
             incorrectScreen();
                 
@@ -211,4 +216,4 @@ function run (){
     begin();
 }
 
-$(run); // Test save
+$(run); 
