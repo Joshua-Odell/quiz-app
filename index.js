@@ -36,58 +36,56 @@ function openingScreen() {
                     <input type="button" id="start" value="BLAST OFF">
                 </form>               
             </div>` 
-    )
-    //return openingScreen;
-    
+    )    
 }
 
 
-function currentQuestion(questionCount) {
+function currentQuestion(questionCount, percentage) {
     return (
            `<div class="flex-container">
-                <h2>
-                    ${list[questionCount].question}
-                </h2>
+                <h2>`
+                   + list[questionCount].question +
+                `</h2>
                 <fieldset>
                     <legend>Multiple Choice</legend>
                     <form>
                         <input type="radio" id="option1" name="options" value="option1">
-                        <label for="option1">${list[questionCount].o1}</label><br>
+                        <label for="option1">`+ list[questionCount].o1 +`</label><br>
                         <input type="radio" id="option2" name="options" value="option2">
-                        <label for="option2">${list[questionCount].o2}</label><br>
+                        <label for="option2">`+ list[questionCount].o2 +`</label><br>
                         <input type="radio" id="option3" name="options" value="option3">
-                        <label for="option3">${list[questionCount].o3}</label><br>
+                        <label for="option3">`+ list[questionCount].o3 +`</label><br>
                         <input type="radio" id="option4" name="options" value="option4">
-                        <label for="option4">${list[questionCount].o4}</label><br> <!--correct-->
+                        <label for="option4">`+ list[questionCount].o4 +`</label><br> <!--correct-->
                         <br>
                         <input type="submit" class="nextQuestion" id="nextQuestion" value="Submit">
 
                     </form>
                 </fieldset>
                 <p> 
-                    You have correctly answered  ${percentage}% of questions <br>
-                    You have completed ${questionCount} of ${list.length}
-                </p>
+                    You have correctly answered ` + percentage +`% of questions <br>
+                    You have completed `+ questionCount + ` of ` + list.length +
+                `</p>
             </div>`
     )   
 }
 
-function resultsScreen() {
+function resultsScreen(percentage, result, generatedQuote) {
     //This will display the end results of the quiz complete with a try again button that resets the programs and counters
-    return (
+    return $(
             `<div class="flex-container">
                 <h2>
                     Mission Debrief:
                 </h2>
                 <p>
-                    Your Mission Successfully Made it ${percentage}% of the way to Neptune <br>
+                    Your Mission Successfully Made it `+ percentage + `% of the way to Neptune <br>
                     <br>
-                    Out of ${list.length} questions you got ${result} correct <br>
+                    Out of ` + list.length + ` questions you got ` + result + ` correct <br>
                 </p>
                 <img src="pictures/debrief.jpg" alt="A bunch of people staring at the camera in a conference room">
-                <p>
-                ${generatedQuote}
-                </p>
+                <p>`
+                + generatedQuote + 
+                `</p>
                 <form>
                     <input type="button" id="restart" value="Try Again">
                 </form>
@@ -121,7 +119,7 @@ function incorrectScreen(correctAnswer){
             <div> <img src="pictures/mistake.jpg" alt="a lego figurine standing next to a small grey lego space ship"> </div>
             <p>
                 
-                The correct answer is correctAnswer.
+                The correct answer is "`+ correctAnswer +`".
             </p>
             <form>
                 <input type="button" id="submit" value="Next Question">
@@ -135,7 +133,7 @@ function pullQuestion() {
     //create a submit button
     //return and display %
     if (questionCount<list.length){
-        $(".app").html(currentQuestion(questionCount));
+        $(".app").html(currentQuestion(questionCount, percentage));
         $('#nextQuestion').on("click", function(e){
             //stop default GETTING A NOT DEFINED ERROR
             e.preventDefault();
@@ -150,7 +148,7 @@ function pullQuestion() {
     else {
         quoteGenerator();
         console.log(generatedQuote);
-        $(".app").html(resultsScreen());
+        $(".app").html(resultsScreen(percentage,  result, generatedQuote));
         console.log("results");
         $('#restart').on("click", function(e){
             startOver();
@@ -178,7 +176,7 @@ function questionCheck() {
         else {
             correctAnswer = list[questionCount].answer;
             percentage = result * 20;
-            $(".app").html(incorrectScreen());
+            $(".app").html(incorrectScreen(correctAnswer));
                 
         }
         questionCount ++;
